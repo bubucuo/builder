@@ -8,11 +8,16 @@ export function formatStyle(style, noNeedPos) {
 
   newStyle = checkPx(newStyle, ["width", "height", "lineHeight", "fontSize"]);
 
+  delete newStyle.width;
+  delete newStyle.height;
   delete newStyle.top;
   delete newStyle.right;
   delete newStyle.bottom;
   delete newStyle.left;
   delete newStyle.transform;
+  delete newStyle.borderWidth;
+  delete newStyle.animationName;
+  delete newStyle.marginLeft;
 
   return newStyle;
 }

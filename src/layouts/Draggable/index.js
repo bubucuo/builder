@@ -17,14 +17,36 @@ export default class Draggable extends Component {
   }
 
   render() {
-    const {cmp, index} = this.props;
+    const {cmp, index, canvasWidth, canvasHeight} = this.props;
 
-    const {style} = cmp.data;
+    let style = cmp.data.style;
 
-    const top = style.top;
-    const left = style.left;
-    const width = style.width,
-      height = style.height;
+    // console.log("style.left", style); //sy-log
+    // 吸右
+    if (style.width > canvasWidth) {
+      style.width = (style.width * 100) / canvasWidth + "%";
+    } else if (Math.abs(style.width - canvasWidth) < 7) {
+      style.width = "100%";
+    } else if (
+      Math.abs(style.left) > 5 &&
+      Math.abs(style.left + style.width - canvasWidth) < 5
+    ) {
+      console.log("哈哈哈", Math.abs(style.left)); //sy-log
+      style.right = 0;
+      delete style.left;
+    } else if (Math.abs(style.left + style.width / 2 - canvasWidth / 2) < 7) {
+      // 左右中间
+      style.left = "50%";
+      style.marginLeft = "-" + style.width / 2 + "px";
+    }
+
+    if (style.height > canvasHeight) {
+      style.height = (style.height * 100) / canvasHeight + "%";
+    } else if (Math.abs(style.top + style.height - canvasHeight) < 5) {
+      // 吸底
+      style.bottom = 0;
+      delete style.top;
+    }
 
     return (
       <div className={styles.main} style={{...style, zIndex: index}}>
