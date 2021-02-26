@@ -6,6 +6,7 @@ import ButtonComponent from "../../components/ButtonComponent";
 import ImgComponent from "../../components/ImgComponent";
 import classnames from "classnames";
 import styles from "./index.less";
+import {formatStyle} from "../../utils";
 
 export const isTextComponent = 0;
 export const isButtonComponent = 1;
@@ -49,7 +50,9 @@ export default class Draggable extends Component {
     }
 
     return (
-      <div className={styles.main} style={{...style, zIndex: index}}>
+      <div
+        className={styles.main}
+        style={{...formatStyle(style, true), zIndex: index}}>
         {getComponent(cmp)}
       </div>
     );
