@@ -1,3 +1,5 @@
+export const end = "http://150.158.30.131:8989";
+
 export function common(res, successCallback, failedCallback) {
   if (res.status === 200) {
     successCallback(res.data.result);
