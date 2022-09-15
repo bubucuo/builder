@@ -38,6 +38,7 @@ module.exports = {
   devServer: {
     proxy: {
       "/api": {target: "http://150.158.30.131:8989", changeOrigin: true},
+      "/all": {target: "https://commom.pek3b.qingstor.com", changeOrigin: true},
     },
   },
 };
