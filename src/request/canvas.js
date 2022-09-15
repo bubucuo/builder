@@ -1,5 +1,5 @@
 import axios from "axios";
-import {common} from "./index";
+import {common, end} from "./index";
 
 // 查询
 export function getCanvas(values, successCallback) {
