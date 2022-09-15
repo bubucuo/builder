@@ -1,5 +1,4 @@
 import {useState, useEffect} from "react";
-import styles from "./App.less";
 import {getCanvas} from "./request/canvas";
 import Cmp from "./components/Cmp";
 
@@ -18,19 +17,24 @@ function App() {
     }
   }, []);
 
+  let transform = "";
+
+  if (style?.width) {
+    transform = `scale(${window.screen.width / style.width})`;
+  }
+
   return canvas ? (
     <div
       id="canvas"
-      className={styles.canvas}
       style={{
         ...style,
+        transform,
+        transformOrigin: "0 0",
       }}>
-      <div className={styles.cmps}>
-        {/* 组件区域 */}
-        {cmps.map((cmp, index) => (
-          <Cmp key={cmp.key} cmp={cmp} index={index} />
-        ))}
-      </div>
+      {/* 组件区域 */}
+      {cmps.map((cmp, index) => (
+        <Cmp key={cmp.key} cmp={cmp} index={index} />
+      ))}
     </div>
   ) : (
     <div>

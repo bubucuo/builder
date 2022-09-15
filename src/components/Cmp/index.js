@@ -22,12 +22,6 @@ export default class Cmp extends Component {
 
     const zIndex = index;
 
-    console.log(
-      "%c [  ]-27",
-      "font-size:13px; background:pink; color:#bf2c9f;",
-      cmp
-    );
-
     return (
       <div
         id={cmp.key}
@@ -36,8 +30,7 @@ export default class Cmp extends Component {
           ...style,
           transform,
           zIndex,
-        }}
-        onClick={this.setSelected}>
+        }}>
         {/* 组件本身 , 注意如果是文本组件 ，如果处于选中状态，则目前处理是，textarea与这里的div Text重叠*/}
         <div
           className={styles.cmp}
