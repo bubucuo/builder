@@ -1,41 +1,40 @@
-import { useState, useEffect } from "react";
+import {useState, useEffect} from "react";
 import styles from "./App.less";
-import Draggable from "./layouts/Draggable";
-import { formatStyle } from "./utils";
+import {getCanvas} from "./request/canvas";
+import Cmp from "./components/Cmp";
 
 function App() {
   const [canvas, setCanvas] = useState(null);
 
-  const { cmps, style } = canvas || {};
+  const {cmps, style} = canvas || {};
 
   useEffect(() => {
-    let cc = JSON.parse(
-      '{"style":{"width":320,"height":568,"backgroundColor":"#ffffff00","backgroundImage":"http://150.158.30.131:8181/chuliu.jpeg","backgroundPosition":"center","backgroundSize":"cover","backgroundRepeat":"no-repeat","boxSizing":"content-box"},"cmps":[{"desc":"图片","data":{"type":2,"iconfont":"iconfont icon-image","value":"http://150.158.30.131:8181/tiger.png","style":{"top":355,"left":-15,"width":72,"height":86,"borderRadius":"0%","borderStyle":"none","borderWidth":"0","borderColor":"#fff","animationName":"jello","animationDelay":0,"animationDuration":1,"animationIterationCount":"infinite"}},"onlyKey":0.284866448554715},{"desc":"图片","data":{"type":2,"iconfont":"iconfont icon-image","value":"http://150.158.30.131:8181/hua.png","style":{"top":499,"left":155,"width":61,"height":66,"borderRadius":"0%","borderStyle":"none","borderWidth":"0","borderColor":"#fff"}},"onlyKey":0.04785683542864816}]}'
-    );
-    setCanvas(cc);
+    if (window.location.search) {
+      getCanvas(window.location.search, (res) =>
+        setCanvas(JSON.parse(res.content))
+      );
+    } else {
+      alert("出错了！");
+    }
   }, []);
 
   return canvas ? (
     <div
-      className={styles.main}
+      id="canvas"
+      className={styles.canvas}
       style={{
-        ...formatStyle(style),
-        backgroundImage: `url(${style.backgroundImage})`,
-      }}
-    >
-      {cmps.map((cmp, index) => (
-        <Draggable
-          key={cmp.onlyKey}
-          cmp={cmp}
-          index={index}
-          canvasWidth={style.width}
-          canvasHeight={style.height}
-        />
-      ))}
+        ...style,
+      }}>
+      <div className={styles.cmps}>
+        {/* 组件区域 */}
+        {cmps.map((cmp, index) => (
+          <Cmp key={cmp.key} cmp={cmp} index={index} />
+        ))}
+      </div>
     </div>
   ) : (
     <div>
-      <i className="iconfont icon-loading"></i>
+      <i className="iconfont icon-loading">加载中...</i>
     </div>
   );
 }

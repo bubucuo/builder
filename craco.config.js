@@ -13,7 +13,7 @@ module.exports = {
         lessLoaderOptions: {
           lessOptions: {javascriptEnabled: true},
         },
-        modifyLessRule: function() {
+        modifyLessRule: function () {
           return {
             test: /\.less$/,
             exclude: /node_modules/,
@@ -34,4 +34,10 @@ module.exports = {
       },
     },
   ],
+
+  devServer: {
+    proxy: {
+      "/api": {target: "http://150.158.30.131:8989", changeOrigin: true},
+    },
+  },
 };
