@@ -12,10 +12,12 @@ function App() {
     getCanvas(search, (res) => setCanvas(JSON.parse(res.content)));
   }, []);
 
-  let transform = "";
+  let transform = "",
+    height;
 
   if (style?.width) {
     transform = `scale(${window.screen.width / style.width})`;
+    height = (window.screen.width / style.width) * style.height;
   }
 
   return canvas ? (
@@ -23,6 +25,7 @@ function App() {
       id="canvas"
       style={{
         ...style,
+        // height,
         transform,
         transformOrigin: "0 0",
       }}>
