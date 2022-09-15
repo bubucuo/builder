@@ -8,13 +8,8 @@ function App() {
   const {cmps, style} = canvas || {};
 
   useEffect(() => {
-    if (window.location.search) {
-      getCanvas(window.location.search, (res) =>
-        setCanvas(JSON.parse(res.content))
-      );
-    } else {
-      alert("出错了！");
-    }
+    let search = window.location.search || "?id=15";
+    getCanvas(search, (res) => setCanvas(JSON.parse(res.content)));
   }, []);
 
   let transform = "";
