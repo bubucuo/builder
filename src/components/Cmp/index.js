@@ -15,7 +15,7 @@ export const isGraphComponent = 3;
 export default class Cmp extends Component {
   render() {
     const {cmp, index} = this.props;
-    const {style} = cmp;
+    const {style, onClick} = cmp;
 
     const {width, height} = style;
     const transform = `rotate(${style.transform}deg)`;
@@ -30,6 +30,11 @@ export default class Cmp extends Component {
           ...style,
           transform,
           zIndex,
+        }}
+        onClick={() => {
+          if (onClick) {
+            window.location.href = onClick;
+          }
         }}>
         {/* 组件本身 , 注意如果是文本组件 ，如果处于选中状态，则目前处理是，textarea与这里的div Text重叠*/}
         <div
