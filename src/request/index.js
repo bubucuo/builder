@@ -1,4 +1,4 @@
-export const end = "https://www.bubucuo.cn/";
+export const end = "http://template.josephxia.com";
 
 export function common(res, successCallback, failedCallback) {
   if (res.status === 200) {
