@@ -1,4 +1,4 @@
-export const end = "http://template.josephxia.com";
+export const end = "";
 
 export function common(res, successCallback, failedCallback) {
   if (res.status === 200) {
@@ -13,8 +13,8 @@ export function common(res, successCallback, failedCallback) {
       typeof failedCallback === "function"
         ? failedCallback()
         : alert(
-            res.data.msg + "\n信息有误，请关注公众号”bubucuo“，获取最新链接！"
-          );
+          res.data.msg + "\n信息有误，请关注公众号”bubucuo“，获取最新链接！"
+        );
     }
   } else if (res.status === 500) {
     typeof failedCallback === "function"
