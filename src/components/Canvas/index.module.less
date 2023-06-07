@@ -1,0 +1,47 @@
+.main {
+  position: relative;
+  border: solid 1px #dddddd;
+  box-shadow: #ccc 1px 1px 20px;
+  transform-origin: 50% 0%;
+  // 在编辑器，画布是有一个border的，但是这个只是为了编辑器的展示效果，与用户设置的宽高无关，
+  // 因此这里注意不要设置成 border-box，要不然在编辑器中计算画宽高的时候会多 2px。
+  box-sizing: content-box;
+
+  .referenceLine {
+    z-index: 9999;
+    display: block;
+    position: absolute;
+  }
+
+  .referenceLineX {
+    left: -50px;
+    right: -50px;
+    width: auto;
+    height: 6px;
+    margin-top: -4px;
+    cursor: row-resize;
+    &:before {
+      content: "";
+      display: block;
+      width: 100%;
+      height: 1px;
+      background-color: red;
+    }
+  }
+  .referenceLineY {
+    top: -50px;
+    bottom: -50px;
+    width: 6px;
+    height: auto;
+    margin-left: -4px;
+    cursor: col-resize;
+
+    &:before {
+      content: "";
+      display: block;
+      width: 1px;
+      height: 100%;
+      background-color: red;
+    }
+  }
+}

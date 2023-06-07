@@ -1,0 +1,12 @@
+.main {
+  position: absolute;
+  cursor: pointer;
+  box-sizing: border-box;
+  overflow: hidden;
+  white-space: break-spaces;
+}
+
+.main img {
+  width: 100%;
+  height: 100%;
+}
