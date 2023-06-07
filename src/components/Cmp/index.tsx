@@ -29,8 +29,6 @@ const Cmp = memo((props: ICmpProps) => {
 
   const transform = `rotate(${style.transform}deg)`;
 
-  console.log("cmp render"); //sy-log
-
   return (
     <div
       className={styles.main}
@@ -44,15 +42,9 @@ const Cmp = memo((props: ICmpProps) => {
           window.location.href = onClick;
         }
       }}>
-      <div
-        className={styles.cmp}
-        style={{
-          width: style.width,
-          height: style.height,
-        }}>
-        {cmp.type === isTextComponent && <Text {...cmp} />}
-        {cmp.type === isImgComponent && <Img {...cmp} />}
-      </div>
+      {cmp.type === isTextComponent && <Text {...cmp} />}
+      {cmp.type === isImgComponent && <Img {...cmp} />}
+      {/* 图形组件不需要渲染内容 */}
     </div>
   );
 });

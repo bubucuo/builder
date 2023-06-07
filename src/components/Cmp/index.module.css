@@ -1,11 +1,9 @@
 .main {
   position: absolute;
   cursor: pointer;
-}
-
-.cmp {
-  white-space: break-spaces;
+  box-sizing: border-box;
   overflow: hidden;
+  white-space: break-spaces;
 }
 
 .main img {

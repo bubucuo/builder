@@ -4,10 +4,8 @@ specifiers:
   '@types/node': 20.2.4
   '@types/react': 18.2.7
   '@types/react-dom': 18.2.4
-  classnames: ^2.3.2
   eslint: 8.41.0
   eslint-config-next: 13.4.4
-  lodash: ^4.17.21
   next: 13.4.4
   react: 18.2.0
   react-dom: 18.2.0
@@ -25,8 +23,6 @@ dependencies:
 devDependencies:
   '@types/react': 18.2.7
   '@types/react-dom': 18.2.4
-  classnames: 2.3.2
-  lodash: 4.17.21
 
 packages:
 
@@ -505,10 +501,6 @@ packages:
       ansi-styles: 4.3.0
       supports-color: 7.2.0
     dev: false
-
-  /classnames/2.3.2:
-    resolution: {integrity: sha512-CSbhY4cFEJRe6/GQzIk5qXZ4Jeg5pcsP7b5peFSDpffpe1cqjASH/n9UTjBwOp6XpMSTwQ8Za2K5V02ueA7Tmw==}
-    dev: true
 
   /client-only/0.0.1:
     resolution: {integrity: sha512-IV3Ou0jSMzZrd3pZ48nLkT9DA7Ag1pnPzaiQhpW7c3RbcqqzvzzVu+L8gfqMp/8IM2MQtSiqaCxrrcfu8I8rMA==}
@@ -1591,10 +1583,6 @@ packages:
   /lodash.merge/4.6.2:
     resolution: {integrity: sha512-0KpjqXRVvrYyCsX1swR/XTK0va6VQkQM6MNo7PqW77ByjAhoARA8EfrP1N4+KlKj8YS0ZUCtRT/YUuhyYDujIQ==}
     dev: false
-
-  /lodash/4.17.21:
-    resolution: {integrity: sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==}
-    dev: true
 
   /loose-envify/1.4.0:
     resolution: {integrity: sha512-lyuxPGr/Wfhrlem2CL/UcnUc1zcqKAImBDzukY7Y5F/yQiNdko6+fRLevlw1HgMySw7f611UIY408EtxRSoK3Q==}
