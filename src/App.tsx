@@ -18,18 +18,15 @@ function App() {
       "http://builder.codebus.tech/api/web/content/get" + search
     );
     const data = await res.json();
-    console.log(
-      "%c [ data ]-16",
-      "font-size:13px; background:pink; color:#bf2c9f;",
-      data
-    );
 
     if (typeof data?.result?.content === "string") {
+      const canvas = JSON.parse(data.result.content);
       setData({
         loading: false,
-        canvas: JSON.parse(data.result.content),
+        canvas,
         err: "",
       });
+      document.title = canvas.title;
     } else {
       setData({
         ...data,
