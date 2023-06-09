@@ -36,6 +36,7 @@ const Cmp = memo((props: ICmpProps) => {
         ...style,
         transform,
         zIndex: index,
+        animationPlayState: "running",
       }}
       onClick={() => {
         if (onClick) {
