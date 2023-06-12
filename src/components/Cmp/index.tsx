@@ -1,6 +1,6 @@
-import {Img, Text} from "./CmpDetail";
-import {memo} from "react";
-import styles from "./index.module.css";
+import { Img, Text } from "./CmpDetail";
+import { memo } from "react";
+// import styles from "./index.module.css";
 
 export const isTextComponent = 1;
 export const isImgComponent = 2;
@@ -24,14 +24,14 @@ interface ICmpProps {
 }
 
 const Cmp = memo((props: ICmpProps) => {
-  const {cmp, index} = props;
-  const {style, onClick} = cmp;
+  const { cmp, index } = props;
+  const { style, onClick } = cmp;
 
   const transform = `rotate(${style.transform}deg)`;
 
   return (
     <div
-      className={styles.main}
+      className={style.main}
       style={{
         ...style,
         transform,
