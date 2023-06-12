@@ -1,0 +1,22 @@
+name: Public Teplate SERVER
+
+on:
+  push:
+    branches: [main]
+jobs:
+  PullSource:
+    runs-on: ubuntu-latest
+    name: "PullSource"
+    steps:
+      - name: Pull source
+        uses: appleboy/ssh-action@v0.1.6
+        with:
+          host: "123.249.115.108"
+          username: root
+          key: ${{ secrets.ACCESS_TOKEN }}
+          script: |
+            cd /root/source/builder/
+            git pull
+            pnpm i
+            pnpm build
+            pm2 restart builder
