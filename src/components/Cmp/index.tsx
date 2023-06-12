@@ -1,6 +1,6 @@
 import {Img, Text} from "./CmpDetail";
 import {memo} from "react";
-// import styles from "./index.module.css";
+import "./index.css";
 
 export const isTextComponent = 1;
 export const isImgComponent = 2;
@@ -31,7 +31,7 @@ const Cmp = memo((props: ICmpProps) => {
 
   return (
     <div
-      className={style.main}
+      className={"main"}
       style={{
         ...style,
         transform,
