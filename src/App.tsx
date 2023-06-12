@@ -4,7 +4,7 @@ import Cmp from "./components/Cmp";
 function App() {
   const [data, setData] = useState({
     loading: true,
-    canvas: {title: "bubucuo", style: {}, cmps: []},
+    canvas: {style: {}, cmps: []},
     err: "",
   });
 
@@ -14,25 +14,29 @@ function App() {
   const getData = async () => {
     let search = window.location.search || "?id=2";
 
-    const res = await fetch(
-      "http://builder.codebus.tech/api/web/content/get" + search
-    );
+    const res = await fetch("api/web/content/get" + search);
     const data = await res.json();
 
-    if (typeof data?.result?.content === "string") {
+    if (
+      typeof data?.result?.content === "string" &&
+      data.result.publish &&
+      !data.result.isDelete
+    ) {
       const canvas = JSON.parse(data.result.content);
+
       setData({
         loading: false,
         canvas,
         err: "",
       });
-      document.title = canvas.title;
+      document.title = data.result.title;
     } else {
       setData({
         ...data,
         loading: false,
         err: "id 信息有误，请检查之后重新输入，或者微信联系作者「bubucuo_sy」",
       });
+      document.title = "bubucuo";
     }
   };
   useEffect(() => {
