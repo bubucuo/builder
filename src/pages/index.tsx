@@ -2,7 +2,7 @@ import Head from "next/head";
 import ClientOnly from "src/components/ClientOnly";
 import Canvas from "src/components/Canvas";
 
-export default function Home({data}: any) {
+export default function Home({ data }: any) {
   return (
     <>
       <Head>
@@ -30,9 +30,9 @@ export default function Home({data}: any) {
 // SSR，Server-Side Rendering
 // 在页面请求时重新生成HTML发送给客户端。
 // getServerSideProps 只在服务端调用，并不会运行在客户端。
-export async function getServerSideProps({query}: {query: {id: string}}) {
+export async function getServerSideProps({ query }: { query: { id: string } }) {
   const res = await fetch(
-    "http://builder.codebus.tech/api/web/content/get?id=" + (query.id || 2)
+    "http://template.codebus.tech/api/web/content/get?id=" + (query.id || 2)
   );
   const data = await res.json();
 
