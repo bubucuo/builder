@@ -1,15 +1,15 @@
-import { useState, useEffect } from "react";
+import {useState, useEffect} from "react";
 import Cmp from "./components/Cmp";
 
 function App() {
   const [data, setData] = useState({
     loading: true,
-    canvas: { title: "bubucuo", style: {}, cmps: [] },
+    canvas: {title: "bubucuo", style: {}, cmps: []},
     err: "",
   });
 
-  const { loading, err, canvas } = data;
-  const { cmps, style } = canvas || {};
+  const {loading, err, canvas} = data;
+  const {cmps, style} = canvas || {};
 
   const getData = async () => {
     let search = window.location.search || "?id=2";
