@@ -50,4 +50,6 @@ const Cmp = memo((props: ICmpProps) => {
   );
 });
 
+Cmp.displayName = "Cmp";
+
 export default Cmp;
