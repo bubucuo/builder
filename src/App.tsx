@@ -16,10 +16,10 @@ function App() {
     const res = await fetch("api/web/content/get" + search);
     const data = await res.json();
 
+    const isPreview = window.location.search.indexOf("preview") > -1;
     if (
-      typeof data?.result?.content === "string"
-      // && data.result.publish &&
-      // !data.result.isDelete
+      typeof data?.result?.content === "string" &&
+      (isPreview || (data.result.publish && !data.result.isDelete))
     ) {
       const canvas = JSON.parse(data.result.content);
 
