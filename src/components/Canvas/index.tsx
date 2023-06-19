@@ -1,4 +1,4 @@
-import Cmp from "src/components/Cmp";
+import Cmp, {ICmpWithKey, isGroupComponent} from "src/components/Cmp";
 import styles from "./index.module.css";
 
 export default function Canvas({canvas}: any) {
@@ -22,12 +22,17 @@ export default function Canvas({canvas}: any) {
       style={{
         ...style,
         width,
-        backgroundImage: `url(${style.backgroundImage})`,
         transform,
+        transformOrigin: "0 0",
+        overflow: "hidden",
+        margin: "auto",
+        backgroundImage: `url(${(style as any).backgroundImage})`,
       }}>
-      {cmps.map((item: any, index: number) => (
-        <Cmp key={item.key} cmp={item} index={index} />
-      ))}
+      {cmps.map((cmp: ICmpWithKey, index: number) => {
+        return (cmp.type & isGroupComponent) === 0 ? (
+          <Cmp key={cmp.key} cmp={cmp} index={index} />
+        ) : null;
+      })}
     </div>
   );
 }
