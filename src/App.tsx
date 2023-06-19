@@ -1,26 +1,25 @@
 import {useState, useEffect} from "react";
-import Cmp from "./components/Cmp";
+import Cmp, {isFormComponent_Button, isGroupComponent} from "./components/Cmp";
 
 function App() {
   const [data, setData] = useState({
     loading: true,
-    canvas: {style: {}, cmps: []},
+    canvas: {style: {}, cmps: [], formKeys: null},
     err: "",
   });
 
   const {loading, err, canvas} = data;
-  const {cmps, style} = canvas || {};
+  const {cmps, style, formKeys} = canvas || {};
 
   const getData = async () => {
     let search = window.location.search || "?id=2";
-
     const res = await fetch("api/web/content/get" + search);
     const data = await res.json();
 
     if (
-      typeof data?.result?.content === "string" &&
-      data.result.publish &&
-      !data.result.isDelete
+      typeof data?.result?.content === "string"
+      // && data.result.publish &&
+      // !data.result.isDelete
     ) {
       const canvas = JSON.parse(data.result.content);
 
@@ -43,17 +42,6 @@ function App() {
     getData();
   }, []);
 
-  let transform = "";
-  let width = (style as any)?.width;
-  if (width < 1000) {
-    // 如果设置的是移动端，但是是在PC显示的，控制下最大宽度
-    let maxWidth = window.screen.width;
-    if (maxWidth > 1000) {
-      maxWidth = width;
-    }
-    transform = `scale(${maxWidth / width})`;
-  }
-
   if (loading) {
     return (
       <div>
@@ -66,6 +54,18 @@ function App() {
     return <div className="err">{err}</div>;
   }
 
+  let transform = "";
+  let width = (style as any)?.width;
+  if (width < 1000) {
+    // 如果设置的是移动端，但是是在PC显示的，控制下最大宽度
+    let maxWidth = window.screen.width;
+    if (maxWidth > 1000) {
+      maxWidth = width;
+    }
+    transform = `scale(${maxWidth / width})`;
+  }
+
+  //  成功读取数据之后
   return (
     <div
       id="canvas"
@@ -78,9 +78,11 @@ function App() {
         margin: "auto",
       }}>
       {/* 组件区域 */}
-      {cmps.map((cmp: any, index) => (
-        <Cmp key={cmp.key} cmp={cmp} index={index} />
-      ))}
+      {cmps.map((cmp: any, index) => {
+        return (cmp.type & isGroupComponent) === 0 ? (
+          <Cmp key={cmp.key} cmp={cmp} index={index} />
+        ) : null;
+      })}
     </div>
   );
 }

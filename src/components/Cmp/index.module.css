@@ -1,9 +1,9 @@
 .main {
   position: absolute;
   cursor: pointer;
-  box-sizing: border-box;
   overflow: hidden;
   white-space: break-spaces;
+  box-sizing: content-box !important;
 }
 
 .main img {
