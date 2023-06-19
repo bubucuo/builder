@@ -1,7 +1,7 @@
 .main {
   position: absolute;
   cursor: pointer;
-  box-sizing: border-box;
+  box-sizing: content-box !important;
   overflow: hidden;
   white-space: break-spaces;
 }
