@@ -76,6 +76,7 @@ function App() {
         transformOrigin: "0 0",
         overflow: "hidden",
         margin: "auto",
+        backgroundImage: `url(${(style as any).backgroundImage})`,
       }}>
       {/* 组件区域 */}
       {cmps.map((cmp: any, index) => {
