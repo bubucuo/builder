@@ -1,10 +1,10 @@
 import {useState, useEffect} from "react";
-import Cmp from "./components/Cmp";
+import Cmp, {isGroupComponent} from "./components/Cmp";
 
 function App() {
   const [data, setData] = useState({
     loading: true,
-    canvas: {title: "bubucuo", style: {}, cmps: []},
+    canvas: {style: {}, cmps: []},
     err: "",
   });
 
@@ -13,42 +13,34 @@ function App() {
 
   const getData = async () => {
     let search = window.location.search || "?id=2";
-
-    const res = await fetch(
-      "http://template.codebus.tech/api/web/content/get" + search
-    );
+    const res = await fetch("api/web/content/get" + search);
     const data = await res.json();
 
-    if (typeof data?.result?.content === "string") {
+    if (
+      typeof data?.result?.content === "string"
+      // && data.result.publish &&
+      // !data.result.isDelete
+    ) {
       const canvas = JSON.parse(data.result.content);
+
       setData({
         loading: false,
         canvas,
         err: "",
       });
-      document.title = canvas.title;
+      document.title = data.result.title;
     } else {
       setData({
         ...data,
         loading: false,
         err: "id 信息有误，请检查之后重新输入，或者微信联系作者「bubucuo_sy」",
       });
+      document.title = "bubucuo";
     }
   };
   useEffect(() => {
     getData();
   }, []);
-
-  let transform = "";
-  let width = (style as any)?.width;
-  if (width < 1000) {
-    // 如果设置的是移动端，但是是在PC显示的，控制下最大宽度
-    let maxWidth = window.screen.width;
-    if (maxWidth > 1000) {
-      maxWidth = width;
-    }
-    transform = `scale(${maxWidth / width})`;
-  }
 
   if (loading) {
     return (
@@ -62,6 +54,18 @@ function App() {
     return <div className="err">{err}</div>;
   }
 
+  let transform = "";
+  let width = (style as any)?.width;
+  if (width < 1000) {
+    // 如果设置的是移动端，但是是在PC显示的，控制下最大宽度
+    let maxWidth = window.screen.width;
+    if (maxWidth > 1000) {
+      maxWidth = width;
+    }
+    transform = `scale(${maxWidth / width})`;
+  }
+
+  //  成功读取数据之后
   return (
     <div
       id="canvas"
@@ -74,9 +78,11 @@ function App() {
         margin: "auto",
       }}>
       {/* 组件区域 */}
-      {cmps.map((cmp: any, index) => (
-        <Cmp key={cmp.key} cmp={cmp} index={index} />
-      ))}
+      {cmps.map((cmp: any, index) => {
+        return (cmp.type & isGroupComponent) === 0 ? (
+          <Cmp key={cmp.key} cmp={cmp} index={index} />
+        ) : null;
+      })}
     </div>
   );
 }

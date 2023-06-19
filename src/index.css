@@ -8,16 +8,9 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-html,
-body,
 #root {
-  height: 100%;
-  width: 100%;
-}
-
-body {
-  width: 100%;
-  overflow-x: hidden;
+  width: 1vw;
+  height: 1vh;
 }
 
 code {
@@ -34,11 +27,12 @@ code {
 
 select,
 input {
-  min-width: 80px;
-  min-height: 28px;
-  line-height: 28px;
-  border: solid 1px #eee;
+  /* min-width: 80px; */
+  /* min-height: 28px; */
+  /* line-height: 28px; */
   padding: 0 6px;
+  outline: none;
+  box-sizing: border-box;
 }
 
 input,
@@ -61,6 +55,7 @@ ul {
 }
 
 .err {
+  min-width: 320px;
   padding: 20px;
   font-size: 20px;
   color: red;

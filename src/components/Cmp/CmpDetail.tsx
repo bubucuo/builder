@@ -7,21 +7,20 @@ export function Img({value}: {value: string | undefined}) {
 }
 
 export function Input({
+  inputType = "text",
   label,
-  style,
-  labelStyle,
-  cmpStyle,
   placeholder,
-  value,
+  formItemName,
+  formKey,
 }: any) {
   return (
     <>
-      <label style={labelStyle}>{label}</label>
       <input
+        className={"input" + formKey}
+        type={inputType}
+        name={formItemName}
         placeholder={placeholder}
-        style={cmpStyle}
-        // value={value}
-        // onChange={() => {}}
+        style={{width: "100%", height: "100%"}}
         aria-label={label}
       />
     </>
