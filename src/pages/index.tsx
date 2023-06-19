@@ -34,11 +34,12 @@ export async function getServerSideProps({ query }: { query: { id: string } }) {
   const res = await fetch(
     "http://template.codebus.tech/api/web/content/get?id=" + (query.id || 2)
   );
+
   const data = await res.json();
 
   return {
     props: {
-      data: data.result,
+      data: data.result.publish && !data.result.isDelete && data.result,
     },
   };
 }
