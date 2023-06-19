@@ -1,15 +1,15 @@
 import {useState, useEffect} from "react";
-import Cmp, {isFormComponent_Button, isGroupComponent} from "./components/Cmp";
+import Cmp, {isGroupComponent} from "./components/Cmp";
 
 function App() {
   const [data, setData] = useState({
     loading: true,
-    canvas: {style: {}, cmps: [], formKeys: null},
+    canvas: {style: {}, cmps: []},
     err: "",
   });
 
   const {loading, err, canvas} = data;
-  const {cmps, style, formKeys} = canvas || {};
+  const {cmps, style} = canvas || {};
 
   const getData = async () => {
     let search = window.location.search || "?id=2";
