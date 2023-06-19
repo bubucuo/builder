@@ -39,7 +39,7 @@ export async function getStaticProps({params}: {params: {id: string}}) {
 
   return {
     props: {
-      data: data.result,
+      data: data.result.publish && !data.result.isDelete && data.result,
     },
   };
 }
