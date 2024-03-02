@@ -1,19 +1,20 @@
-import {useState, useEffect} from "react";
-import Cmp, {isGroupComponent} from "./components/Cmp";
+import { useState, useEffect } from "react";
+import Cmp, { isGroupComponent } from "./components/Cmp";
 
 function App() {
   const [data, setData] = useState({
     loading: true,
-    canvas: {style: {}, cmps: []},
+    canvas: { style: {}, cmps: [] },
     err: "",
   });
 
-  const {loading, err, canvas} = data;
-  const {cmps, style} = canvas || {};
+  const { loading, err, canvas } = data;
+  const { cmps, style } = canvas || {};
 
   const getData = async () => {
     let search = window.location.search || "?id=2";
-    const res = await fetch("api/web/content/get" + search);
+    let host = 'http://template.codebus.tech/'
+    const res = await fetch(host + "api/web/content/get" + search);
     const data = await res.json();
 
     const isPreview = window.location.search.indexOf("preview") > -1;
