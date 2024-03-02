@@ -13,8 +13,7 @@ function App() {
 
   const getData = async () => {
     let search = window.location.search || "?id=2";
-    let host = 'http://template.codebus.tech/'
-    const res = await fetch(host + "api/web/content/get" + search);
+    const res = await fetch("api/web/content/get" + search);
     const data = await res.json();
 
     const isPreview = window.location.search.indexOf("preview") > -1;
