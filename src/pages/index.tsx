@@ -32,7 +32,7 @@ export default function Home({ data }: any) {
 // getServerSideProps 只在服务端调用，并不会运行在客户端。
 export async function getServerSideProps({ query }: { query: { id: string } }) {
   const res = await fetch(
-    "http://template.codebus.tech/api/web/content/get?id=" + (query.id || 2)
+    "http://localhost:4000/api/web/content/get?id=" + (query.id || 2)
   );
 
   const data = await res.json();
